@@ -63,15 +63,23 @@ function mediaAnosVividos($inventores) {
 
 
 // Função para verificar quais inventores viveram em determinado século
-function seculo($inventores, $num) {
+function InventorSeculo($inventores, $seculo) {
+
+    $inicioSeculo = ($seculo - 1) * 100 + 1;
+
+    $fimSeculo = $seculo * 100;
+
+    $inventoresSeculo = [];
 
     foreach($inventores as $inventor) {
 
-        if($inventor['nasc'] == $num || $inventor['morte'] == $num) {
-            
+        if(($inventor['nasc'] >= $inicioSeculo && $inventor['nasc'] <= $fimSeculo) ||
+        ($inventor['morte'] >= $inicioSeculo && $inventor['morte'] <= $fimSeculo)) {
+            $inventoresSeculo[] = $inventor;
         }
     }
 
+    return $inventoresSeculo;
 }
 
 
